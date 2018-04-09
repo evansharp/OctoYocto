@@ -1,6 +1,8 @@
 <?php
 
 //load the Yocto API
+require_once('yocto_api.php');
+YAPI::RegisterHub("callback");
 
 
 //array of URL endpoints to recieve
@@ -13,7 +15,7 @@ $tentacles = [
 
 //forward to endpoints
 foreach($tentacles as $endpoint){
-
+    YAPI::ForwardHTTPCallback();
 }
 
 //push YoctoCloud data to online implementation with rsync
@@ -28,7 +30,7 @@ exec("rsync -crahvzP /path/in/local/files/foldertocopy remoteuser@remoteserverad
         $output, $exit_code);
 
 
-//release api
-
+//release api resources
+YAPI::FreeAPI();
 
 ?>
