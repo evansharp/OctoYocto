@@ -6,7 +6,7 @@
 //array of URL endpoints to recieve
 $tentacles = [
     "10.0.1.55/trailsendmonitor/hopper/post",
-    "10.0.1.5/YoctoCloud/index.php"
+    "10.0.1.55/YoctoCloud/index.php"
 ];
 
 
