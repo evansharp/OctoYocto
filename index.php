@@ -29,7 +29,7 @@ foreach($tentacles as $endpoint){
 // -P                          same as --partial --progress
 // -v, --verbose               increase verbosity
 echo "Rsync YC Data to cloud:";
-exec("rsync -crahvzP /mnt/datadisk/YoctoCloud/data evan@evansharp.ca:/var/evansharp.ca/YoctoCloud/data",
+exec("rsync -crahvzP /mnt/datadisk/YoctoCloud/data/ evan@evansharp.ca:/var/evansharp.ca/YoctoCloud/data",
         $output, $exit_code);
 
 echo $output;
