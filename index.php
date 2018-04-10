@@ -30,7 +30,7 @@ foreach($tentacles as $endpoint){
 // -v, --verbose               increase verbosity
 echo "Rsync YC Data to cloud:";
 $output = [];
-exec("rsync -crahvzP -e 'ssh -i /home/pi/.ssh/monitor' /mnt/datadisk/YoctoCloud/data/ evan@evansharp.ca:/var/www/evansharp.ca/YoctoCloud/data",
+exec("rsync -crahvzP -e \"ssh -i /home/pi/.ssh/monitor\" /mnt/datadisk/YoctoCloud/data/ evan@evansharp.ca:/var/www/evansharp.ca/YoctoCloud/data",
         $output, $exit_code);
 if( not_empty($output) ){
     foreach($output as $line){
