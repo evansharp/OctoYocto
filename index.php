@@ -29,10 +29,28 @@ foreach($tentacles as $endpoint){
 // -P                          same as --partial --progress
 // -v, --verbose               increase verbosity
 echo "Rsync YC Data to cloud:";
+$output = [];
 exec("rsync -crahvzP /mnt/datadisk/YoctoCloud/data/ evan@evansharp.ca:/var/www/evansharp.ca/YoctoCloud/data",
         $output, $exit_code);
-
-echo $output;
+if( not_empty($output) ){
+    foreach($output as $line){
+        echo $line;
+    }
+}
+echo " ";
+switch( $exit_code ){
+    case 0:
+        echo "Rsync completed successfully. (code 0)";
+        break;
+    case 1:
+        echo "Syntax error in rsync command. (code 1)";
+        break;
+    case 255:
+        echo "Probably an SSH error. (code 255)";
+        break;
+    default:
+        echo "Something weird happened. Code " . $exit_code;
+}
 
 //release api resources
 YAPI::FreeAPI();
