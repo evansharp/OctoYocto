@@ -18,7 +18,7 @@ foreach($tentacles as $endpoint){
     YAPI::ForwardHTTPCallback($endpoint, $output);
     echo "Endpoint: " . $endpoint;
     echo "Result: " . $output;
-    echo "---------------------------------------------------"
+    echo "---------------------------------------------------";
 }
 
 // push YoctoCloud data to online implementation with rsync
@@ -29,7 +29,7 @@ foreach($tentacles as $endpoint){
 // -P                          same as --partial --progress
 // -v, --verbose               increase verbosity
 echo "Rsync YC Data to cloud:";
-exec("rsync -crahvzP /mnt/datadisk/YoctoCloud/data/ evan@evansharp.ca:/var/evansharp.ca/YoctoCloud/data",
+exec("rsync -crahvzP /mnt/datadisk/YoctoCloud/data/ evan@evansharp.ca:/var/www/evansharp.ca/YoctoCloud/data",
         $output, $exit_code);
 
 echo $output;
