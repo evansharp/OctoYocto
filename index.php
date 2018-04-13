@@ -15,7 +15,7 @@ $output = "";
 
 // forward to endpoints
 foreach($tentacles as $endpoint){
-    YAPI::ForwardHTTPCallback($endpoint, $output);
+    YAPI::yForwardHTTPCallback($endpoint, $output);
     echo "Endpoint: " . $endpoint;
     echo "Result: " . $output;
     echo "---------------------------------------------------";
