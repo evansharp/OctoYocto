@@ -3,7 +3,6 @@
 require_once('yocto_api.php');
 YAPI::RegisterHub("callback");
 
-
 //array of URL endpoints to recieve
 $tentacles = [
     "http://10.0.1.55/trailsendmonitor/hopper/post",
@@ -15,7 +14,8 @@ $output = "";
 
 // forward to endpoints
 foreach($tentacles as $endpoint){
-    YAPI::yForwardHTTPCallback($endpoint, $output);
+
+    YAPI::ForwardHTTPCallback($endpoint, $output);
     echo "Endpoint: " . $endpoint;
     echo "Result: " . $output;
     echo "---------------------------------------------------";
