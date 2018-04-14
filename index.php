@@ -1,4 +1,8 @@
 <?php
+//high error reporting
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
+
 //load the Yocto API
 require_once('yocto_api.php');
 YAPI::RegisterHub("callback");
@@ -14,11 +18,11 @@ $output = "";
 
 // forward to endpoints
 foreach($tentacles as $endpoint){
-
     YAPI::ForwardHTTPCallback($endpoint, $output);
-    echo "Endpoint: " . $endpoint;
-    echo "Result: " . $output;
-    echo "---------------------------------------------------";
+    echo "\n";
+    echo "Endpoint: " . $endpoint . "\n";
+    echo "Result: " . $output . "\n";
+    echo "---------------------------------------------------\n";
 }
 
 // push YoctoCloud data to online implementation with rsync
@@ -28,16 +32,16 @@ foreach($tentacles as $endpoint){
 // -z, --compress              compress file data during the transfer
 // -P                          same as --partial --progress
 // -v, --verbose               increase verbosity
-echo "Rsync YC Data to cloud:";
+echo "Rsync YC Data to cloud:\n";
 $output = [];
-exec("rsync -crahvzP -e \"ssh -i /home/pi/.ssh/monitor\" /mnt/datadisk/YoctoCloud/data/ evan@evansharp.ca:/var/www/evansharp.ca/YoctoCloud/data",
+exec("rsync -crahvzP -e \"ssh -i /home/pi/.ssh/monitor\" /mnt/datadisk/yoctocloud/data/ evan@evansharp.ca:/var/www/evansharp.ca/YoctoCloud/data",
         $output, $exit_code);
-if( not_empty($output) ){
+if( !empty($output) ){
     foreach($output as $line){
-        echo $line;
+        echo $line . "\n";
     }
 }
-echo " ";
+echo "\n";
 switch( $exit_code ){
     case 0:
         echo "Rsync completed successfully. (code 0)";

@@ -3176,6 +3176,7 @@ class YAPI
                 print $data;
                 continue;
             }
+
             // chunk decoding
             while(strlen($data) > 0) {
                 if($chunksize == 0) {
