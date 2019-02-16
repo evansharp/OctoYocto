@@ -32,9 +32,12 @@ foreach($tentacles as $endpoint){
 // -z, --compress              compress file data during the transfer
 // -P                          same as --partial --progress
 // -v, --verbose               increase verbosity
+
+// Don't forget to generate the 'monitor' ssh key and make it accessible by the www-data user
+
 echo "Rsync YC Data to cloud:\n";
 $output = [];
-exec('rsync -crahvzP -e "ssh -i /var/www/.ssh/monitor" /mnt/datadisk/yoctocloud/data/ evan@evansharp.ca:/var/www/evansharp.ca/YoctoCloud/data',
+exec('rsync -crahvzP -e "ssh -i /var/www/.ssh/monitor" /mnt/datadisk/YoctoCloud/data/ evan@evansharp.ca:/var/www/evansharp.ca/YoctoCloud/data',
         $output, $exit_code);
 if( !empty($output) ){
     foreach($output as $line){
